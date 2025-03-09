@@ -2,7 +2,6 @@
 
 Este é um sistema de controle de estoque desenvolvido em **Node.js** com **Express**, **Prisma** e **MySQL**. Ele permite gerenciar **produtos**, **usuários** e **movimentações de estoque** (entrada e saída de produtos).
 
----
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -29,27 +28,50 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - **[ESLint](https://eslint.org/)** - Linter para garantir boas práticas no código.
 - **[Nodemon](https://www.npmjs.com/package/nodemon)** - Monitora mudanças no código e reinicia o servidor automaticamente.
 
----
-
-📌 **Essas tecnologias garantem um backend robusto, seguro e de alta performance!**
-
-
----
 
 ## 📌 Como Rodar o Projeto
 
-### **1️⃣ Clonar o Repositório**
+### **1. Clonar o Repositório**
 ```sh
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
 ```
 
-### **2️⃣ Instalar Dependências**
+### **2. Instalar Dependências**
 ```sh
 npm install
 ```
 
-### **3️⃣ Configurar as Variáveis de Ambiente**
+### **3. Importar o Dump no Banco de Dados**
+
+#### Criar o banco de dados
+Antes de importar, certifique-se de que o banco de dados existe. Caso contrário, crie-o com:
+```sh
+ mysql -u root -p -e "CREATE DATABASE estoque;"
+```
+### **4 Importar o banco de dados**
+Rode o comando:
+```sh
+mysql -u root -p estoque < dump.sql
+```
+
+
+### **5. Confirmar se os Dados Foram Importados**
+Após importar o dump, abra o MySQL e verifique se os dados estão lá:
+```sh
+mysql -u root -p
+```
+Depois, execute:
+
+```sh
+USE estoque;
+SHOW TABLES;
+SELECT * FROM produtos; -- Exemplo para visualizar os produtos
+```
+
+
+
+### **6. Configurar as Variáveis de Ambiente**
 Crie um arquivo .env na raiz do projeto e configure as credenciais do banco de dados e o segredo JWT:
 
 ```sh
@@ -58,13 +80,13 @@ JWT_SECRET="seu_segredo_super_secreto"
 PORT=3000
 ```
 
-### **4️⃣ Criar e Configurar o Banco de Dados**
+### **4️. Configurar o Banco de Dados**
 
 ```sh
 npx prisma migrate dev --name init
 ```
 
-### **5️⃣ Rodar o Servidor**
+### **5️. Rodar o Servidor**
 ```sh
 npx ts-node src/app.ts
 
@@ -76,34 +98,6 @@ npx ts-node src/app.ts
 http://localhost:3000
 ```
 
-## 🔥 Rotas da API
-
-### 🧑‍💻 Autenticação de Usuário
-| Método  | Rota                | Descrição                          |
-|---------|---------------------|----------------------------------|
-| **POST** | `/api/users/signup`  | Criar um novo usuário            |
-| **POST** | `/api/users/login`   | Autenticar e obter um token      |
-| **GET**  | `/api/users/profile` | Obter perfil do usuário (Autenticado) |
-
----
-
-### 📦 Produtos
-| Método  | Rota                   | Descrição                         |
-|---------|------------------------|---------------------------------|
-| **POST** | `/api/produtos`        | Criar um novo produto (Autenticado) |
-| **GET**  | `/api/produtos`        | Listar todos os produtos        |
-| **GET**  | `/api/produtos/:id`    | Obter detalhes de um produto    |
-| **PUT**  | `/api/produtos/:id`    | Atualizar um produto (Autenticado) |
-| **DELETE** | `/api/produtos/:id`  | Deletar um produto (Autenticado) |
-
----
-
-### 📊 Controle de Estoque
-| Método  | Rota                     | Descrição                              |
-|---------|--------------------------|--------------------------------------|
-| **POST** | `/api/estoque/entrada`   | Registrar entrada de produto (Autenticado) |
-| **POST** | `/api/estoque/saida`     | Registrar saída de produto (Autenticado) |
-| **GET**  | `/api/estoque`           | Listar movimentações de estoque |
 
 ## 🔑 Autenticação (JWT)
 Para acessar rotas protegidas, envie um **token JWT** no **header** da requisição:

@@ -78,7 +78,7 @@ export const saidaEstoque = async (req: Request, res: Response): Promise<void> =
 export const listarMovimentacoes = async (_req: Request, res: Response): Promise<void> => {
   try {
     const movimentacoes = await prisma.estoque.findMany({
-      include: { produto: { select: { name: true } } }, // Inclui nome do produto
+      include: { produto: { select: { name: true } } }, 
     });
     res.json(movimentacoes);
   } catch (error) {

@@ -1,4 +1,4 @@
-import pool from "../config/database"; // Ajuste o caminho se necessário
+import pool from "../config/database"; 
 
 async function testDB() {
   try {

@@ -49,8 +49,6 @@ router.post('/signup', async (req: Request, res: Response, next: NextFunction) =
   }
 });
 
-// 🔹 Verifica se a rota está sendo carregada
-console.log('✅ Rota de login carregada!');
 router.post('/login', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { email, password } = req.body;

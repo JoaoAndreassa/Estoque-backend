@@ -29,7 +29,7 @@ model Produto {
 
 model Estoque {
   id         Int      @id @default(autoincrement())
-  tipo       String   // 'entrada' ou 'saida'
+  tipo       String   
   quantidade Int
   produto    Produto  @relation(fields: [produtoId], references: [id], name: "ProdutoEstoque")
   produtoId  Int
