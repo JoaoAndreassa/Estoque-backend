@@ -26,7 +26,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - **[TypeScript](https://www.typescriptlang.org/)** - Superset do JavaScript para tipagem estática.
 - **[Ts-Node](https://www.npmjs.com/package/ts-node)** - Permite rodar TypeScript diretamente no Node.js.
 - **[ESLint](https://eslint.org/)** - Linter para garantir boas práticas no código.
-- **[Nodemon](https://www.npmjs.com/package/nodemon)** - Monitora mudanças no código e reinicia o servidor automaticamente.
+
 
 
 ## 📌 Como Rodar o Projeto
