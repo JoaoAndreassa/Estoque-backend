@@ -41,15 +41,24 @@ cd seu-repositorio
 ```sh
 npm install
 ```
+### **3. Instalar e Configurar o MySQL**
+Baixe o instalador no site oficial do MySQL:
 
-### **3. Importar o Dump no Banco de Dados**
+```sh
+https://dev.mysql.com/downloads/
+```
+Siga o assistente de instalação e anote a senha do usuário root.
+Inicie o serviço do MySQL (pode ser via MySQL Workbench ou prompt de comando).
 
-#### Criar o banco de dados
-Antes de importar, certifique-se de que o banco de dados existe. Caso contrário, crie-o com:
+#### Defina a senha do root conforme as instruções do terminal ou use o MySQL Workbench para gerenciar.
+
+### **4. Criar o Banco de Dados**
+
+certifique-se de que o banco de dados existe. Caso contrário, crie-o com:
 ```sh
  mysql -u root -p -e "CREATE DATABASE estoque;"
 ```
-### **4 Importar o banco de dados**
+### **5 Importar o Dump no banco de dados**
 Rode o comando:
 ```sh
 mysql -u root -p estoque < dump.sql
@@ -80,16 +89,15 @@ JWT_SECRET="seu_segredo_super_secreto"
 PORT=3000
 ```
 
-### **4️. Configurar o Banco de Dados**
+### **7. Configurar o Banco de Dados**
 
 ```sh
 npx prisma migrate dev --name init
 ```
 
-### **5️. Rodar o Servidor**
+### **8. Rodar o Servidor**
 ```sh
-npx ts-node src/app.ts
-
+npm run dev
 ```
 
 

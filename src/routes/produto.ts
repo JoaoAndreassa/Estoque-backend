@@ -8,14 +8,36 @@ import prisma from "../prisma/prismaClient";
 const router = express.Router();
 
 
-// const uploadDir = path.join(__dirname, "../../uploads");
-// if (!fs.existsSync(uploadDir)) {
-//   fs.mkdirSync(uploadDir, { recursive: true });
-// }
+const uploadDir = path.join(__dirname, "../../uploads");
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 
-const storage = multer.memoryStorage(); 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/"); // Pasta onde os arquivos serão salvos
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Renomeia o arquivo para evitar conflitos
+  },
+});
 const upload = multer({ storage });
+
+
+router.post("/uploads", upload.single("image"), (req, res): void => {
+  try{
+    if (!req.file) {
+      res.status(400).json({ message: "Nenhuma imagem foi enviada" }); 
+      return
+   }
+   res.json({ imageUrl: `/uploads/${req.file.filename}` });
+  }
+  catch(error){
+    console.error(error)
+    res.status(500).json({ message: "Erro ao subir arquivo" });
+  }
+});
 
 
 router.post("/", async (req, res) => {
